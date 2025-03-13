@@ -1,0 +1,22 @@
+[
+    {
+        "name":"Single",
+        "weight": 45
+    },
+    {
+        "name":"Engaged",
+        "weight": 10
+    },
+    {
+        "name":"Married",
+        "weight": 30
+    },
+    {
+        "name":"Separated",
+        "weight": 10
+    },
+    {
+        "name":"Widowed",
+        "weight": 5
+    }
+]

@@ -1,0 +1,27 @@
+[
+    {
+        "name": "juvenile",
+        "weight": 10,
+        "occupation_needed": false
+    },
+    {
+        "name": "young",
+        "weight": 40,
+        "occupation_needed": true
+    },
+    {
+        "name": "middle-aged",
+        "weight": 37,
+        "occupation_needed": true
+    },
+    {
+        "name": "older",
+        "weight": 8,
+        "occupation_needed": true
+    },
+    {
+        "name": "elderly",
+        "weight": 5,
+        "occupation_needed": true
+    }
+]

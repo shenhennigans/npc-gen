@@ -1,0 +1,17 @@
+[
+    {
+        "name": "female",
+        "symbol": "F",
+        "weight": 47
+    },
+    {
+        "name": "male",
+        "symbol": "M",
+        "weight": 47
+    },
+    {
+        "name": "non-binary",
+        "symbol": "NB",
+        "weight": 6
+    }
+]

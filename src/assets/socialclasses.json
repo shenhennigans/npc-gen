@@ -1,0 +1,27 @@
+[
+    {
+        "name":"Impoverished",
+        "occupation_needed": false,
+        "weight": 10
+    },
+    {
+        "name":"Working Class",
+        "occupation_needed": true,
+        "weight": 49
+    },
+    {
+        "name":"Middle Class",
+        "occupation_needed": true,
+        "weight": 30
+    },
+    {
+        "name":"Minor Nobility",
+        "occupation_needed": true,
+        "weight": 10
+    },
+    {
+        "name":"Ruling Nobility",
+        "occupation_needed": false,
+        "weight": 1
+    }
+]
