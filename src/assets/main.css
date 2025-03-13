@@ -15,6 +15,12 @@ a,
   padding: 3px;
 }
 
+.blockquote-footer {
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+}
+
 @media (hover: hover) {
   a:hover {
     background-color: hsla(160, 100%, 37%, 0.2);

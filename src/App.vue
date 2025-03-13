@@ -24,7 +24,9 @@
 			<CharacterOutput :char="state.character" />
 		</template>
 	</main>
-	<footer>
+		<footer class="blockquote-footer">
+			by <cite title="Source Title">Alexandra & Maria Hennig</cite>
+		
 		<!-- <template v-if="state.showCharacter==true">
 			<CharacterStory :char="state.character" />
 		</template>	 -->
