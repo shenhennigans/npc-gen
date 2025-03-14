@@ -2,42 +2,50 @@
     {
       "index": "dragonborn",
       "name": "Dragonborn",
-      "url": "/api/2014/races/dragonborn"
+      "url": "/api/2014/races/dragonborn",
+      "weight": 12
     },
     {
       "index": "dwarf",
       "name": "Dwarf",
-      "url": "/api/2014/races/dwarf"
+      "url": "/api/2014/races/dwarf",
+      "weight": 13
     },
     {
       "index": "elf",
       "name": "Elf",
-      "url": "/api/2014/races/elf"
+      "url": "/api/2014/races/elf",
+      "weight": 5
     },
     {
       "index": "gnome",
       "name": "Gnome",
-      "url": "/api/2014/races/gnome"
+      "url": "/api/2014/races/gnome",
+      "weight": 7
     },
     {
       "index": "half-elf",
       "name": "Half-Elf",
-      "url": "/api/2014/races/half-elf"
+      "url": "/api/2014/races/half-elf",
+      "weight": 15
     },
     {
       "index": "half-orc",
       "name": "Half-Orc",
-      "url": "/api/2014/races/half-orc"
+      "url": "/api/2014/races/half-orc",
+      "weight": 3
     },
     {
       "index": "halfling",
       "name": "Halfling",
-      "url": "/api/2014/races/halfling"
+      "url": "/api/2014/races/halfling",
+      "weight": 13
     },
     {
       "index": "human",
       "name": "Human",
-      "url": "/api/2014/races/human"
+      "url": "/api/2014/races/human",
+      "weight": 21
     },
     {
       "index": "tiefling",

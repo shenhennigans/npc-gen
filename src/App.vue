@@ -3,23 +3,28 @@
 	import CharacterOutput from './components/CharacterOutput.vue'
 	import CharacterStory from './components/CharacterStory.vue'
 	import HeaderComp from './components/Header.vue'
-	import { reactive} from "vue";
-	const state = reactive({ character: {}, showCharacter:false, showBackstory:false});
+	import { reactive, ref} from "vue";
+	//reactive components
+	const state = reactive({ character: {}, showCharacter:false});
+	const characterStoryRef = ref(null);
+	// methods
 	function displayCharacter(char) {
 				state.character = char;
 				state.showCharacter = true;
-				state.showBackstory = false;
+				characterStoryRef.value.hideDetails();
 	}
 	function exportCharacter(char){
 		state.character = char;
 		if(state.character.backstory != null){
 			state.character.backstory = sanitizeString(state.character.backstory);
 		}
-		let filename = `${state.character.name}-${state.character.race}-${state.character.class}-${Date.now()}`;
+		if(state.character.traits != null){
+			state.character.traits = sanitizeString(state.character.traits);
+		}
+		let filename = `${state.character.name}-${state.character.race}-${state.character.alignment}-${Date.now()}`;
 		let char_arr = [char];
 		let output = convertToCSV(char_arr);
-		//let output
-		console.log(output);
+	
 		var blob = new Blob([output], { type: 'text/csv;charset=utf-8;' });
 		if (navigator.msSaveBlob) { // IE 10+
             navigator.msSaveBlob(blob, filename);
@@ -47,30 +52,31 @@
 		}).join('\n')
 	}
 	function sanitizeString(str) {
-    if (str) {
-        str = str.replace(/(\r\n|\n|\r|\s+|\t|&nbsp;)/gm,' ');
-        str = str.replace(/"/g, '""');
-        str = str.replace(/ +(?= )/g,'');
-		if (str.match(/"|,/)) {
-        	str = '"' + str + '"';
-    	}
-    } else {
-        str = '';
-    }
-	console.log(str);
-    return str;
-}
+		if (str) {
+			str = str.replace(/(\r\n|\n|\r|\s+|\t|&nbsp;)/gm,' ');
+			str = str.replace(/"/g, '""');
+			str = str.replace(/ +(?= )/g,'');
+			if (str.match(/"|,/)) {
+				str = '"' + str + '"';
+			}
+		} else {
+			str = '';
+		}
+		//console.log(str);
+		return str;
+	}
 </script>
 
 <template>
 	
-	
 	<header>
+		<!-- Big Page Header Icon -->
 		<v-icon name="gi-dice-twenty-faces-twenty" fill="#00BD7E" animation="float" speed="slow" scale="8"/>
+
 		<div class="wrapper">
 			<HeaderComp>
 				<template #heading>DnD NPC Generator</template>
-				<p>Make a rando</p>
+				<p>Quickly create NPCs for your stories and campaigns. Play and get inspired.</p>
 			</HeaderComp>
 
 			 <Controls @generated="displayCharacter"/>
@@ -82,7 +88,7 @@
 			<CharacterOutput :char="state.character" />
 		</template>
 		<template v-if="state.showCharacter==true">
-			<CharacterStory :char="state.character" :showBackstory="state.showBackstory" @export="exportCharacter"/>
+			<CharacterStory :char="state.character"  ref="characterStoryRef" @export="exportCharacter"/>
 		</template>	
 	</main>
 
@@ -94,11 +100,7 @@
 <style scoped>
 	header {
 		line-height: 1.5;
-	}
-
-	.logo {
-		display: block;
-		margin: 0 auto 2rem;
+		align-items: center;
 	}
 
 
@@ -109,14 +111,11 @@
 			padding-right: calc(var(--section-gap) / 2);
 		}
 		
-		.logo {
-			margin: 0 2rem 0 0;
-		}
-		
 		header .wrapper {
 			display: flex;
 			place-items: flex-start;
 			flex-wrap: wrap;
+			align-items: center;
 		}
 	}
 </style>

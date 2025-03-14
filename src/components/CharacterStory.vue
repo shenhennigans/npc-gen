@@ -3,20 +3,19 @@ import OpenAI from 'openai';
 import 'dotenv';
 export default {
     props: {
-        char: {},
-        showBackstory: Boolean
+        char: {}
     },
     data() {
         return {
             isLoading: false,
-            showBackstoryBool: this.showBackstory,
+            showBackstory: false,
             system_prompt: `You are a dnd dungeon master describing a minor character. Be concise, add some backstory based on the given information.`
         }
     },
     methods: {
         async generateBackstory(){
             // controlling visibility
-            this.showBackstoryBool = false;
+            this.showBackstory = false;
             this.isLoading = true;
             // generating prompt
             let user_prompt= this.makePrompt(false,true);
@@ -62,7 +61,7 @@ export default {
             });
             // controlling visibility
             this.isLoading = false;
-            this.showBackstoryBool = true;
+            this.showBackstory = true;
             // assigning open ai response to backstory variable
             this.char.backstory = completion.choices[0].message.content;
             //console.log(this.char.backstory);
@@ -70,36 +69,53 @@ export default {
         },
         makePrompt(includeSystemPrompt, isShortVersion){
             let prompt = "";
+
+            let hasSubRace = this.char.subrace != null;
+            let hasSocialClass = this.char.socialclass != null;
+            let hasOccupation = this.char.occupation!= null;
             if(includeSystemPrompt){
                 prompt += this.system_prompt;
             }
             if(isShortVersion){
-                prompt += `${this.char.name},${this.char.age},${this.char.gender},${this.char.subrace} ${this.char.race},${this.char.class}.`;
-                if(this.char.occupation!= null){
-                    prompt += `they work as a ${this.char.occupation},`;
+                prompt += `${this.char.name},${this.char.age},${this.char.gender},${this.char.alignment},${this.char.traits}`
+                if(hasSubRace){
+                    prompt += `${this.char.subrace} `;
                 }
-                if(this.char.socialclass!= null){
-                    prompt += `their social status is ${this.char.socialclass}.`;
+                prompt += `${this.char.race},`
+                if(hasOccupation){
+                    prompt += `${this.char.occupation},`;
                 }
-                prompt += `They are ${this.char.familystatus}.`;
-                prompt =  prompt.substring(0, 130);
+                if(hasSocialClass){
+                    prompt += `${this.char.socialclass},`;
+                }
+                prompt += `${this.char.familystatus}.`;
+                prompt =  prompt.substring(0, 131);
             }
             else{
                 prompt += "\n";
-                prompt += `${this.char.name} is a ${this.char.age} ${this.char.gender} ${this.char.subrace} ${this.char.race}.`;
-                if(this.char.occupation!= null){
+                prompt += `${this.char.name} is a ${this.char.age} ${this.char.gender}`;
+                if(hasSubRace){
+                    prompt+= `${this.char.subrace} `;
+                }
+                prompt+= `${this.char.race}. Their alignment is ${this.char.alignment}`;
+                if(hasOccupation){
                     prompt += `They work as a ${this.char.occupation}.`;
                 }
-                if(this.char.socialclass!= null){
+                if(hasSocialClass){
                     prompt += `Their social status is ${this.char.socialclass}.`;
                 }
                 prompt += `They are ${this.char.familystatus}.`;
+                prompt += `Others would describe them as ${this.char.traits}.`;
+                
             }
             //console.log(prompt);
             return prompt;
         },
         requestExport(){
             this.$emit('export', this.char)
+        },
+        hideDetails(){
+            this.showBackstory =false;
         }
     }
 }
@@ -123,7 +139,7 @@ export default {
             </div>
         </div>
         <div class="row">
-            <template v-if="showBackstoryBool == true">
+            <template v-if="showBackstory == true">
                 <p class="card-text">{{ char.backstory }}</p>
             </template>
         </div>

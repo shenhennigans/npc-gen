@@ -1,0 +1,2 @@
+## Traits JSON
+https://github.com/ScottMaclure/character-traits/tree/master

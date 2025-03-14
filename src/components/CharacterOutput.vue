@@ -6,17 +6,6 @@ import PropertyItem from './PropertyItem.vue'
 // import CommunityIcon from './icons/IconCommunity.vue'
 // import SupportIcon from './icons/IconSupport.vue'
 
-// import { GiDwarfHelmet } from "oh-vue-icons/icons"; // dwarf
-// import { GiElfHelmet } from "oh-vue-icons/icons"; // elf
-// import { GiBarbarian } from "oh-vue-icons/icons"; // barbarian
-
-// import { GiCharm } from "oh-vue-icons/icons"; // family status
-// import { GiStabbedNote } from "oh-vue-icons/icons"; // class
-// import { GiBarbedSun } from "oh-vue-icons/icons"; // race
-// import { GiOpenTreasureChest } from "oh-vue-icons/icons"; // social class
-// import { GiPencilRuler } from "oh-vue-icons/icons"; // occupation
-// import { GiCharacter } from "oh-vue-icons/icons"; // name age gender
-
 const props = defineProps(['char'])
 </script>
 
@@ -33,7 +22,7 @@ const props = defineProps(['char'])
 
     <PropertyItem>
         <template #icon>
-            <v-icon name="gi-barbed-sun" fill="#00BD7E" animation="float" speed="slow" scale="2"/>
+            <v-icon name="gi-dna2" fill="#00BD7E" animation="float" speed="slow" scale="2"/>
         </template>
         <template #heading>Race</template>
         {{ char.subrace }} {{ char.race }}
@@ -41,10 +30,22 @@ const props = defineProps(['char'])
 
     <PropertyItem>
         <template #icon>
-            <v-icon name="gi-stabbed-note" fill="#00BD7E" animation="float" speed="slow" scale="2"/>
+            <v-icon name="gi-mesh-network" fill="#00BD7E" animation="float" speed="slow" scale="2"/>
+            <!-- 
+            GiAbstract098 gi-abstract-098
+            GiConwayLifeGlider gi-conway-life-glider
+            GiMeshNetwork gi-mesh-network
+            GiMolecule
+
+            GiDigDug
+            GiLaurels
+
+            gi-barbed-sun
+             -->
         </template>
-        <template #heading>Class</template>
-        {{ char.class }}
+        <template #heading>Alignment & Traits </template>
+        {{ char.alignment }} <br>
+        {{ char.traits }}
     </PropertyItem>
 
     <PropertyItem v-if="char.occupation != null">
@@ -57,7 +58,8 @@ const props = defineProps(['char'])
     
     <PropertyItem v-if="char.socialclass != null">
         <template #icon>
-            <v-icon name="gi-open-treasure-chest" fill="#00BD7E" animation="float" speed="slow" scale="2"/>
+            <v-icon name="gi-laurels" fill="#00BD7E" animation="float" speed="slow" scale="2"/>
+            <!-- gi-open-treasure-chest -->
         </template>
         <template #heading>Social Class</template>
         {{ char.socialclass }}

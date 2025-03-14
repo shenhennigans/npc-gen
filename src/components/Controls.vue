@@ -1,5 +1,6 @@
 <script>
 import axios from 'axios';
+import Settings from './Settings.vue'
 import _ from 'lodash';
 import socialclasses from '../assets/data/socialclasses.json'
 import ages from '../assets/data/ages.json'
@@ -10,19 +11,30 @@ import occupations from '../assets/data/occupations.json'
 import firstnames from '../assets/data/firstnames.json'
 import races from '../assets/data/races.json'
 import classes from '../assets/data/classes.json'
+import alignments from '../assets/data/alignments.json'
+import traits from '../assets/data/traits.json'
 const dndAPIUrl = 'https://www.dnd5eapi.co/api/2014/';
 export default {
+    components:{
+        Settings
+    },
     data() {
         return {
-            socialClassesJson : socialclasses,
-            agesJson : ages,
-            gendersJson: genders,
-            familyStatusesJson : familystatuses,
-            subracesJson : subraces,
-            occupationsJson : occupations,
-            firstNamesJson: firstnames,
-            racesJson : races,
-            classesJson : classes,
+            showSettings: false,
+            database : {
+                "socialClasses" : socialclasses,
+                "ages" : ages,
+                "genders" : genders,
+                "familyStatuses" : familystatuses,
+                "subraces" : subraces,
+                "races" : races,
+                "firstNames" : firstnames,
+                "classes" : classes,
+                "alignments" : alignments,
+                "traits" : traits,
+                "occupations" : occupations,
+                
+            },
             generatedCharacter: {}
         }
     },
@@ -31,29 +43,30 @@ export default {
             let rollForOccupation = true;
             let rollForSocialClass = true;
             // Generate Class
-            this.generatedCharacter.class = _.sample(this.classesJson).name;
+            // this.generatedCharacter.class = _.sample(this.database.classes).name;
+            // Generate Alignment
+            this.generatedCharacter.alignment = _.sample(this.database.alignments).name;
             // Generate Gender
-            let selectedGender = this.weighted_random(this.gendersJson);
+            let selectedGender = this.weighted_random(this.database.genders);
             this.generatedCharacter.gender = selectedGender.name;
             // Generate Name
             let availableNames = [];
             if(selectedGender.symbol != 'NB'){
-                availableNames = this.firstNamesJson.filter(function(el){
+                availableNames = this.database.firstNames.filter(function(el){
                     return el.Gender == selectedGender.symbol;
                 });
             }
             else{
-                availableNames = this.firstNamesJson;
+                availableNames = this.database.firstNames;
             }
             this.generatedCharacter.name = _.sample(availableNames).Name;
-            // Generate Family Status
-            this.generatedCharacter.familystatus = this.weighted_random(this.familyStatusesJson).name;
+            
             // Generate Race
-            this.generatedCharacter.race = _.sample(this.racesJson).name;
+            this.generatedCharacter.race = _.sample(this.database.races).name;
             // Generate Sub-Race
             this.generatedCharacter.subrace = null;
             let that = this;
-            let availableSubRaces = this.subracesJson.filter(function (el){
+            let availableSubRaces = this.database.subraces.filter(function (el){
                 return el.parent_race ==  that.generatedCharacter.race;
             });
             if(availableSubRaces.length > 0){
@@ -63,13 +76,15 @@ export default {
                 if(!selectedSubRace.social_class_needed){rollForSocialClass = false;}
             }
             // Generate Age
-            let selectedAge = this.weighted_random(this.agesJson);
+            let selectedAge = this.weighted_random(this.database.ages);
             this.generatedCharacter.age = selectedAge.name
             if(!selectedAge.occupation_needed){rollForOccupation = false;}
+            // Generate Family Status
+            this.generatedCharacter.familystatus = selectedAge.relationship_status_allowed ? this.weighted_random(this.database.familyStatuses).name : 'Single';
             // Generate Social Class
             this.generatedCharacter.socialclass = null;
             if(rollForSocialClass){
-                let selectedSocialClass = this.weighted_random(this.socialClassesJson)
+                let selectedSocialClass = this.weighted_random(this.database.socialClasses)
                 this.generatedCharacter.socialclass = selectedSocialClass.name;
                 if(!selectedSocialClass.occupation_needed){rollForOccupation = false;}
             }
@@ -77,13 +92,20 @@ export default {
             this.generatedCharacter.occupation = null;
             if(rollForOccupation){
                 let that = this;
-                let availableOccupations = this.occupationsJson.filter(function (el){
+                let availableOccupations = this.database.occupations.filter(function (el){
                     return el.social_class ==  that.generatedCharacter.socialclass;
                 });
                 if(availableOccupations.length > 0){
                     this.generatedCharacter.occupation = this.weighted_random(availableOccupations).name
                 }
             }
+            // Generate Traits
+            let selectedTraits = '';
+            for(let i=0; i<3; i++){
+                selectedTraits += _.sample(this.database.traits.personality)+", "
+            }
+            selectedTraits = selectedTraits.substring(0, selectedTraits.length - 2);
+            this.generatedCharacter.traits = selectedTraits;
             
             
             this.$emit('generated', this.generatedCharacter)
@@ -104,6 +126,13 @@ export default {
             break;
             
             return objArray[i];
+        },
+        enterSettings(){
+            this.showSettings = true;
+        },
+        updateDatabase(db){
+            this.database = db;
+            this.showSettings = false;
         }
     }
     //   mounted () {
@@ -116,11 +145,23 @@ export default {
 
 </script>
 <template>
-    <div>
+    <div class="wrapper">
         <button type="button" class="btn btn-dark" @click="rollCharacter"> Roll a character </button>
+        <!-- <v-icon name="gi-settings-knobs" fill="#00BD7E" scale="1.5" @click="enterSettings"/> -->
     </div>
+    <!-- <template v-if="showSettings==true">
+        <Settings :database="database" @settingsupdate="updateDatabase" />  
+    </template> -->
 </template>
 <style scoped>
+
+    .wrapper{
+        margin-bottom: 1rem;
+    }
+
+    button {
+        margin-right: 0.5rem;
+    }
     h1 {
         font-weight: 500;
         font-size: 2.6rem;
@@ -132,15 +173,4 @@ export default {
         font-size: 1.2rem;
     }
 
-    .greetings h1,
-    .greetings h3 {
-        text-align: center;
-    }
-
-    @media (min-width: 1024px) {
-        .greetings h1,
-        .greetings h3 {
-            text-align: left;
-        }
-    }
 </style>

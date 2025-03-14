@@ -2,26 +2,31 @@
     {
         "name": "juvenile",
         "weight": 10,
-        "occupation_needed": false
+        "occupation_needed": false,
+        "relationship_status_allowed": false
     },
     {
         "name": "young",
         "weight": 40,
-        "occupation_needed": true
+        "occupation_needed": true,
+        "relationship_status_allowed": true
     },
     {
         "name": "middle-aged",
         "weight": 37,
-        "occupation_needed": true
+        "occupation_needed": true,
+        "relationship_status_allowed": true
     },
     {
         "name": "older",
         "weight": 8,
-        "occupation_needed": true
+        "occupation_needed": true,
+        "relationship_status_allowed": true
     },
     {
         "name": "elderly",
         "weight": 5,
-        "occupation_needed": true
+        "occupation_needed": true,
+        "relationship_status_allowed": true
     }
 ]
