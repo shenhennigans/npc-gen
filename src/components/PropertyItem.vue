@@ -4,7 +4,7 @@
       <slot name="icon"></slot>
     </i>
     <div class="details">
-      <h3>
+      <h3 class="dm-serif-text-regular">
         <slot name="heading"></slot>
       </h3>
       <slot></slot>
