@@ -510,7 +510,7 @@
             {
                 "name": "juvenile",
                 "weight": 20,
-                "occupation_allowed": false,
+                "occupation_allowed": true,
                 "relationship_status_allowed": false,
                 "sexuality_allowed" : false
             },
