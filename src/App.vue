@@ -95,7 +95,7 @@
 	</main>
 
 	<footer class="blockquote-footer">
-		by <cite>Alexandra & Maria Hennig</cite>
+		by <cite>A & M</cite>
 	</footer>
 </template>
 
