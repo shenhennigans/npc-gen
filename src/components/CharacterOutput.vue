@@ -71,7 +71,7 @@ const props = defineProps(['char'])
         {{ char.socialclass }}
     </PropertyItem>
 
-    <PropertyItem>
+    <PropertyItem v-if="char.familystatus != null">
         <template #icon>
             <v-icon name="gi-charm" fill="#00BD7E" animation="float" speed="slow" scale="2"/>
         </template>
