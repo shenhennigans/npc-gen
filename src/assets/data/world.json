@@ -1,0 +1,728 @@
+{
+    "name": "Default World",
+    "configs": {
+        "hasCustomRaces": false,
+        "allowSexuality": true
+    },
+    "data": {
+        "races": [
+            {
+                "index": "dragonborn",
+                "name": "Dragonborn",
+                "url": "/api/2014/races/dragonborn",
+                "available_subraces": [
+                    {
+                        "name": "Brass",
+                        "parent_race": "Dragonborn",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true
+                    },
+                    {
+                        "name": "Bronze",
+                        "parent_race": "Dragonborn",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true
+                    },
+                    {
+                        "name": "Copper",
+                        "parent_race": "Dragonborn",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true
+                    },
+                    {
+                        "name": "Gold",
+                        "parent_race": "Dragonborn",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true
+                    },
+                    {
+                        "name": "Silver",
+                        "parent_race": "Dragonborn",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true
+                    },
+                    {
+                        "name": "Black",
+                        "parent_race": "Dragonborn",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true
+                    },
+                    {
+                        "name": "Blue",
+                        "parent_race": "Dragonborn",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true
+                    },
+                    {
+                        "name": "Green",
+                        "parent_race": "Dragonborn",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true
+                    },
+                    {
+                        "name": "Red",
+                        "parent_race": "Dragonborn",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true
+                    },
+                    {
+                        "name": "White",
+                        "parent_race": "Dragonborn",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true
+                    },
+                    {
+                        "name": "Amethyst",
+                        "parent_race": "Dragonborn",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true
+                    },
+                    {
+                        "name": "Crystal",
+                        "parent_race": "Dragonborn",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true
+                    },
+                    {
+                        "name": "Emerald",
+                        "parent_race": "Dragonborn",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true
+                    },
+                    {
+                        "name": "Saphhire",
+                        "parent_race": "Dragonborn",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true
+                    },
+                    {
+                        "name": "Topaz",
+                        "parent_race": "Dragonborn",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true
+                    }
+                ],
+                "type": "standard",
+                "weight": 11
+            },
+            {
+                "index": "dwarf",
+                "name": "Dwarf",
+                "url": "/api/2014/races/dwarf",
+                "available_subraces": [
+                    {
+                        "name": "Mountain",
+                        "parent_race": "Dwarf",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true
+                    },
+                    {
+                        "name": "Hill",
+                        "parent_race": "Dwarf",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true
+                    },
+                    {
+                        "name": "Duergar",
+                        "parent_race": "Dwarf",
+                        "occupation_allowed": false,
+                        "social_class_allowed": false
+                    }
+                ],
+                "type": "standard",
+                "weight": 11
+            },
+            {
+                "index": "elf",
+                "name": "Elf",
+                "url": "/api/2014/races/elf",
+                "available_subraces": [
+                    {
+                        "name": "Wood",
+                        "parent_race": "Elf",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true
+                    },
+                    {
+                        "name": "High",
+                        "parent_race": "Elf",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true
+                    },
+                    {
+                        "name": "Sea",
+                        "parent_race": "Elf",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true
+                    },
+                    {
+                        "name": "Drow",
+                        "parent_race": "Elf",
+                        "occupation_allowed": false,
+                        "social_class_allowed": false
+                    }
+                ],
+                "type": "standard",
+                "weight": 11
+            },
+            {
+                "index": "gnome",
+                "name": "Gnome",
+                "url": "/api/2014/races/gnome",
+                "available_subraces": [
+                    {
+                        "name": "Forest",
+                        "parent_race": "Gnome",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true
+                    },
+                    {
+                        "name": "Rock",
+                        "parent_race": "Gnome",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true
+                    },
+                    {
+                        "name": "Deep",
+                        "parent_race": "Gnome",
+                        "occupation_allowed": false,
+                        "social_class_allowed": false
+                    }
+                ],
+                "type": "standard",
+                "weight": 11
+            },
+            {
+                "index": "half-elf",
+                "name": "Half-Elf",
+                "url": "/api/2014/races/half-elf",
+                "available_subraces": [
+                    {
+                        "name": "Wood",
+                        "parent_race": "Elf",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true
+                    },
+                    {
+                        "name": "High",
+                        "parent_race": "Elf",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true
+                    },
+                    {
+                        "name": "Sea",
+                        "parent_race": "Elf",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true
+                    },
+                    {
+                        "name": "Drow",
+                        "parent_race": "Elf",
+                        "occupation_allowed": false,
+                        "social_class_allowed": false
+                    }
+                ],
+                "type": "standard",
+                "weight": 11
+            },
+            {
+                "index": "half-orc",
+                "name": "Half-Orc",
+                "url": "/api/2014/races/half-orc",
+                "available_subraces": [],
+                "type": "standard",
+                "weight": 11
+            },
+            {
+                "index": "halfling",
+                "name": "Halfling",
+                "url": "/api/2014/races/halfling",
+                "available_subraces": [
+                    {
+                        "name": "Ghostwise",
+                        "parent_race": "Halfling",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true
+                    },
+                    {
+                        "name": "Lightfoot",
+                        "parent_race": "Halfling",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true
+                    },
+                    {
+                        "name": "Stout",
+                        "parent_race": "Halfling",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true
+                    }
+                ],
+                "type": "standard",
+                "weight": 11
+            },
+            {
+                "index": "human",
+                "name": "Human",
+                "url": "/api/2014/races/human",
+                "available_subraces": [],
+                "type": "standard",
+                "weight": 12
+            },
+            {
+                "index": "other",
+                "name": "Other",
+                "available_subraces": [
+                    {
+                        "name": "Aarakocra",
+                        "parent_race": "Other",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true,
+                        "weight": 11
+                    },
+                    {
+                        "name": "Bugbear",
+                        "parent_race": "Other",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true,
+                        "weight": 4
+                    },
+                    {
+                        "name": "Centaur",
+                        "parent_race": "Other",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true,
+                        "weight": 4
+                    },
+                    {
+                        "name": "Changeling",
+                        "parent_race": "Other",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true,
+                        "weight": 1
+                    },
+                    {
+                        "name": "Fairy",
+                        "parent_race": "Other",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true,
+                        "weight": 1
+                    },
+                    {
+                        "name": "Firbolg",
+                        "parent_race": "Other",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true,
+                        "weight": 9
+                    },
+                    {
+                        "name": "Goblin",
+                        "parent_race": "Other",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true,
+                        "weight": 4
+                    },
+                    {
+                        "name": "Goliath",
+                        "parent_race": "Other",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true,
+                        "weight": 6
+                    },
+                    {
+                        "name": "Harengon",
+                        "parent_race": "Other",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true,
+                        "weight": 4
+                    },
+                    {
+                        "name": "Hobgoblin",
+                        "parent_race": "Other",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true,
+                        "weight": 5
+                    },
+                    {
+                        "name": "Kenku",
+                        "parent_race": "Other",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true,
+                        "weight": 1
+                    },
+                    {
+                        "name": "Kobold",
+                        "parent_race": "Other",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true,
+                        "weight": 7
+                    },
+                    {
+                        "name": "Leonin",
+                        "parent_race": "Other",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true,
+                        "weight": 1
+                    },
+                    {
+                        "name": "Lizardfolk",
+                        "parent_race": "Other",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true,
+                        "weight": 3
+                    },
+                    {
+                        "name": "Loxodon",
+                        "parent_race": "Other",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true,
+                        "weight": 1
+                    },
+                    {
+                        "name": "Minotaur",
+                        "parent_race": "Other",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true,
+                        "weight": 8
+                    },
+                    {
+                        "name": "Orc",
+                        "parent_race": "Other",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true,
+                        "weight": 8
+                    },
+                    {
+                        "name": "Satyr",
+                        "parent_race": "Other",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true,
+                        "weight": 1
+                    },
+                    {
+                        "name": "Tabaxi",
+                        "parent_race": "Other",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true,
+                        "weight": 9
+                    },
+                    {
+                        "name": "Tortle",
+                        "parent_race": "Other",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true,
+                        "weight": 2
+                    },
+                    {
+                        "name": "Triton",
+                        "parent_race": "Other",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true,
+                        "weight": 1
+                    },
+                    {
+                        "name": "Yuan-ti",
+                        "parent_race": "Other",
+                        "occupation_allowed": true,
+                        "social_class_allowed": true,
+                        "weight": 1
+                    }
+                ],
+                "type": "custom",
+                "weight": 1
+            }
+        ],
+        "planetouched_states": [
+            {
+                "name": "plane-touched",
+                "weight": 10,
+                "available_planetouched_types": [
+                    {
+                        "name": "Tiefling",
+                        "weight": 42
+                    },
+                    {
+                        "name": "Air Genasi",
+                        "weight": 12
+                    },
+                    {
+                        "name": "Earth Genasi",
+                        "weight": 12
+                    },
+                    {
+                        "name": "Fire Genasi",
+                        "weight": 12
+                    },
+                    {
+                        "name": "Water Genasi",
+                        "weight": 12
+                    },
+                    {
+                        "name": "Aasimar",
+                        "weight": 10
+                    }
+                ]
+            },
+            {
+                "name": "regular",
+                "weight": 90
+            }
+        ],
+        "genders": [
+            {
+                "name": "female",
+                "symbol": "F",
+                "weight": 34
+            },
+            {
+                "name": "male",
+                "symbol": "M",
+                "weight": 33
+            },
+            {
+                "name": "non-binary",
+                "symbol": "NB",
+                "weight": 33
+            }
+        ],
+        "sexualities":[
+            {
+                "name": "straight",
+                "weight": 20
+            },
+            {
+                "name": "gay",
+                "weight": 20
+            },
+            {
+                "name": "bisexual",
+                "weight": 20
+            },
+            {
+                "name": "pansexual",
+                "weight": 20
+            },
+            {
+                "name": "asexual",
+                "weight": 20
+            }
+        ],
+        "ages": [
+            {
+                "name": "juvenile",
+                "weight": 20,
+                "occupation_allowed": false,
+                "relationship_status_allowed": false,
+                "sexuality_allowed" : false
+            },
+            {
+                "name": "young",
+                "weight": 20,
+                "occupation_allowed": true,
+                "relationship_status_allowed": true,
+                "sexuality_allowed" : true
+            },
+            {
+                "name": "middle-aged",
+                "weight": 20,
+                "occupation_allowed": true,
+                "relationship_status_allowed": true,
+                "sexuality_allowed" : true
+            },
+            {
+                "name": "older",
+                "weight": 20,
+                "occupation_allowed": true,
+                "relationship_status_allowed": true,
+                "sexuality_allowed" : true
+            },
+            {
+                "name": "elderly",
+                "weight": 20,
+                "occupation_allowed": true,
+                "relationship_status_allowed": true,
+                "sexuality_allowed" : true
+            }
+        ],
+        "socialclasses": [
+            {
+                "name":"Impoverished",
+                "available_occupations": [],
+                "weight": 20
+            },
+            {
+                "name":"Working Class",
+                "available_occupations": [
+                    {
+                        "name":"Farmer (Crops)",
+                        "weight": 8
+                    },
+                    {
+                        "name":"Farmer (Livestock)",
+                        "weight": 8
+                    },
+                    {
+                        "name":"Miner",
+                        "weight": 8
+                    },
+                    {
+                        "name":"Logger",
+                        "weight": 8
+                    },
+                    {
+                        "name":"Stonecutter",
+                        "weight": 8
+                    },
+                    {
+                        "name":"Fisher",
+                        "weight": 8
+                    },
+                    {
+                        "name":"Wagoner/Courier",
+                        "weight": 8
+                    },
+                    {
+                        "name":"Sailor",
+                        "weight": 8
+                    },
+                    {
+                        "name":"Harbor Worker",
+                        "weight": 8
+                    },
+                    {
+                        "name":"Service",
+                        "weight": 7
+                    },
+                    {
+                        "name":"Entertainer",
+                        "weight": 7
+                    },
+                    {
+                        "name":"Attendant (Business)",
+                        "weight": 7
+                    },
+                    {
+                        "name":"Attendant (Temple)",
+                        "weight": 7
+                    }
+                ],
+                "weight": 20
+            },
+            {
+                "name":"Middle Class",
+                "available_occupations": [
+                    {
+                        "name":"Crafter",
+                        "weight": 9
+                    },
+                    {
+                        "name":"Merchant (Minor)",
+                        "weight": 9
+                    },
+                    {
+                        "name":"Foreman (Extraction)",
+                        "weight": 9
+                    },
+                    {
+                        "name":"Foreman (Construction)",
+                        "weight": 9
+                    },
+                    {
+                        "name":"Officer (Military)",
+                        "weight": 8
+                    },
+                    {
+                        "name":"Guard Captain",
+                        "weight": 8
+                    },
+                    {
+                        "name":"Ship Captain",
+                        "weight": 8
+                    },
+                    {
+                        "name":"Mercenary",
+                        "weight": 8
+                    },
+                    {
+                        "name":"Clergy",
+                        "weight": 8
+                    },
+                    {
+                        "name":"Hunter/Forester",
+                        "weight": 8
+                    },
+                    {
+                        "name":"Scholar",
+                        "weight": 8
+                    },
+                    {
+                        "name":"Government Worker",
+                        "weight": 8
+                    }
+                ],
+                "weight": 20
+            },
+            {
+                "name":"Minor Nobility",
+                "available_occupations": [
+                    {
+                        "name":"Landowner (Farms)",
+                        "weight": 25
+                    },
+                    {
+                        "name":"Landowner (Extraction)",
+                        "weight": 25
+                    },
+                    {
+                        "name":"Trading/Shipping",
+                        "weight": 25
+                    },
+                    {
+                        "name":"Banking/Investment",
+                        "weight": 25
+                    }
+                ],
+                "weight": 20
+            },
+            {
+                "name":"Ruling Nobility",
+                "available_occupations": [],
+                "weight": 20
+            }
+        ],
+        "relationshipstatuses" : [
+            {
+                "name":"Single",
+                "weight": 20
+            },
+            {
+                "name":"Engaged",
+                "weight": 20
+            },
+            {
+                "name":"Married",
+                "weight": 20
+            },
+            {
+                "name":"Separated",
+                "weight": 20
+            },
+            {
+                "name":"Widowed",
+                "weight": 20
+            }
+        ],
+        "factions": [
+            {
+                "name": "",
+                "description": "",
+                "ranks": [
+                    {
+                        "name": ""
+                    }
+                ]
+            }
+        ],
+        "regions":[]
+    },
+    "characters":[]
+}

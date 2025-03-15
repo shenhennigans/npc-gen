@@ -25,7 +25,13 @@ const props = defineProps(['char'])
             <v-icon name="gi-dna2" fill="#00BD7E" animation="float" speed="slow" scale="2"/>
         </template>
         <template #heading>Race</template>
-        {{ char.subrace }} {{ char.race }}
+        <template v-if="char.plain_touched_type != null">
+            {{ char.plain_touched_type}} (<span v-if="char.subrace != null">{{ char.subrace }} </span><span v-if="char.subrace != null && char.race != 'Other'">&nbsp;</span><span v-if="char.race != 'Other'">{{ char.race }}</span>)
+        </template>
+        <template v-if="char.plain_touched_type == null">
+            {{ char.subrace }} <span v-if="char.race != 'Other'">{{ char.race }}</span>
+        </template>
+        
     </PropertyItem>
 
     <PropertyItem>

@@ -3,9 +3,10 @@
 	import CharacterOutput from './components/CharacterOutput.vue'
 	import CharacterStory from './components/CharacterStory.vue'
 	import HeaderComp from './components/Header.vue'
+	import world from './assets/data/world.json'
 	import { reactive, ref} from "vue";
 	//reactive components
-	const state = reactive({ character: {}, showCharacter:false});
+	const state = reactive({ world : world, character: {}, showCharacter:false});
 	const characterStoryRef = ref(null);
 	// methods
 	function displayCharacter(char) {
@@ -77,9 +78,10 @@
 			<HeaderComp>
 				<template #heading>DnD NPC Generator</template>
 				<p>Quickly create NPCs for your stories and campaigns. Play and get inspired.</p>
+				<p>Currently running: <a class="text-link">{{ state.world.name }}</a></p>
 			</HeaderComp>
 
-			 <Controls @generated="displayCharacter"/>
+			 <Controls :world="state.world" @generated="displayCharacter"/>
 		</div>
 	</header>
 	

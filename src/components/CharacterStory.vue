@@ -9,7 +9,7 @@ export default {
         return {
             isLoading: false,
             showBackstory: false,
-            system_prompt: `You are a dnd dungeon master describing a minor character. Be concise, add some backstory based on the given information.`
+            system_prompt: `You are a dnd dm. Invent a backstory, quirks, mannerisms for this npc. Output in short sentences, each on new line.`
         }
     },
     methods: {
@@ -33,7 +33,7 @@ export default {
                     {"role": "system", "content": this.system_prompt},
                     {"role": "user", "content": user_prompt},
                 ],
-                max_tokens: 256,
+                max_tokens: 256
             })
             // error handling
             .catch(async (err) => {
@@ -64,13 +64,14 @@ export default {
             this.showBackstory = true;
             // assigning open ai response to backstory variable
             this.char.backstory = completion.choices[0].message.content;
-            //console.log(this.char.backstory);
+            console.log(completion.choices[0].message.content);
             
         },
         makePrompt(includeSystemPrompt, isShortVersion){
             let prompt = "";
 
             let hasSubRace = this.char.subrace != null;
+            let hasPlaneTouch = this.char.plain_touched_type != null;
             let hasSocialClass = this.char.socialclass != null;
             let hasOccupation = this.char.occupation!= null;
             if(includeSystemPrompt){
@@ -78,10 +79,16 @@ export default {
             }
             if(isShortVersion){
                 prompt += `${this.char.name},${this.char.age},${this.char.gender},${this.char.alignment},${this.char.traits}`
+                if(hasPlaneTouch){
+                    prompt += `${this.char.plain_touched_type} `;
+                }
                 if(hasSubRace){
                     prompt += `${this.char.subrace} `;
                 }
-                prompt += `${this.char.race},`
+                if(this.char.race != 'Other'){
+                    prompt += `${this.char.race},`;
+                }
+                
                 if(hasOccupation){
                     prompt += `${this.char.occupation},`;
                 }
@@ -89,7 +96,7 @@ export default {
                     prompt += `${this.char.socialclass},`;
                 }
                 prompt += `${this.char.familystatus}.`;
-                prompt =  prompt.substring(0, 131);
+                prompt =  prompt.substring(0, 141);
             }
             else{
                 prompt += "\n";
@@ -140,7 +147,9 @@ export default {
         </div>
         <div class="row">
             <template v-if="showBackstory == true">
-                <p class="card-text">{{ char.backstory }}</p>
+                <p class="card-text">
+                    {{ char.backstory }}
+                </p>
             </template>
         </div>
     </div>
@@ -148,5 +157,8 @@ export default {
 <style scoped>
     .card-text{
         margin-top: 1.5rem;
+        /* max-width: 80%; */
+        white-space: pre-wrap;
+        text-align: left;
     }
 </style>

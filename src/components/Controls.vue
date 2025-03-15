@@ -1,20 +1,16 @@
 <script>
 import axios from 'axios';
+import 'dotenv'
 import Settings from './Settings.vue'
 import _ from 'lodash';
-import socialclasses from '../assets/data/socialclasses.json'
-import ages from '../assets/data/ages.json'
-import genders from '../assets/data/genders.json'
-import familystatuses from '../assets/data/familystatuses.json'
-import subraces from '../assets/data/subraces.json'
-import occupations from '../assets/data/occupations.json'
 import firstnames from '../assets/data/firstnames.json'
-import races from '../assets/data/races.json'
-import classes from '../assets/data/classes.json'
 import alignments from '../assets/data/alignments.json'
 import traits from '../assets/data/traits.json'
 const dndAPIUrl = 'https://www.dnd5eapi.co/api/2014/';
 export default {
+    props: {
+        world: {}
+    },
     components:{
         Settings
     },
@@ -22,17 +18,9 @@ export default {
         return {
             showSettings: false,
             database : {
-                "socialClasses" : socialclasses,
-                "ages" : ages,
-                "genders" : genders,
-                "familyStatuses" : familystatuses,
-                "subraces" : subraces,
-                "races" : races,
                 "firstNames" : firstnames,
-                "classes" : classes,
                 "alignments" : alignments,
-                "traits" : traits,
-                "occupations" : occupations,
+                "traits" : traits
                 
             },
             generatedCharacter: {}
@@ -40,65 +28,87 @@ export default {
     },
     methods: {
         rollCharacter() {
+            this.generatedCharacter = {};
             let rollForOccupation = true;
             let rollForSocialClass = true;
-            // Generate Class
-            // this.generatedCharacter.class = _.sample(this.database.classes).name;
             // Generate Alignment
             this.generatedCharacter.alignment = _.sample(this.database.alignments).name;
             // Generate Gender
-            let selectedGender = this.weighted_random(this.database.genders);
+            let selectedGender = this.weighted_random(this.world.data.genders);
             this.generatedCharacter.gender = selectedGender.name;
             // Generate Name
-            let availableNames = [];
-            if(selectedGender.symbol != 'NB'){
-                availableNames = this.database.firstNames.filter(function(el){
-                    return el.Gender == selectedGender.symbol;
-                });
+            // random.json?key=ma621614110&gender=f&usage=celm
+            let ndb_url = import.meta.env.VITE_NAMESDB_BASE_URL
+            let ndb_apikey = import.meta.env.VITE_NAMESDB_API_KEY
+            let gender_condition = selectedGender.symbol != 'NB' ? selectedGender.symbol : null;
+            let request_url = ndb_url+'random.json?key='+ndb_apikey;
+            if(gender_condition != null){
+                request_url += '&gender='+ gender_condition;
             }
-            else{
-                availableNames = this.database.firstNames;
-            }
-            this.generatedCharacter.name = _.sample(availableNames).Name;
+            request_url += '&number=1&randomsurname=yes'
+            axios.get(ndb_url+'random.json?key='+ndb_apikey+'')
+            .then(response => {
+                let namesObj = JSON.parse(JSON.stringify(response));
+                console.log(response.data)
+                let firstName = response.data.names[0]
+                let lastName = response.data.names[1]
+                this.generatedCharacter.name = firstName + ' '+ lastName;
+            });
+           
+            // let availableNames = [];
+            // if(selectedGender.symbol != 'NB'){
+            //     availableNames = this.database.firstNames.filter(function(el){
+            //         return el.Gender == selectedGender.symbol;
+            //     });
+            // }
+            // else{
+            //     availableNames = this.database.firstNames;
+            // }
+            //this.generatedCharacter.name = _.sample(availableNames).Name;
             
             // Generate Race
-            this.generatedCharacter.race = _.sample(this.database.races).name;
+            //this.generatedCharacter.race = _.sample(this.database.races).name;
+            let selectedRace = this.weighted_random(this.world.data.races)
+            this.generatedCharacter.race = selectedRace.name;
             // Generate Sub-Race
             this.generatedCharacter.subrace = null;
-            let that = this;
-            let availableSubRaces = this.database.subraces.filter(function (el){
-                return el.parent_race ==  that.generatedCharacter.race;
-            });
-            if(availableSubRaces.length > 0){
-                let selectedSubRace = _.sample(availableSubRaces);
+            if(selectedRace.available_subraces.length > 0){
+                let selectedSubRace = _.sample(selectedRace.available_subraces);
                 this.generatedCharacter.subrace = selectedSubRace.name;
-                if(!selectedSubRace.occupation_needed){rollForOccupation = false;}
-                if(!selectedSubRace.social_class_needed){rollForSocialClass = false;}
+                if(!selectedSubRace.occupation_allowed){rollForOccupation = false};
+                if(!selectedSubRace.social_class_allowed){rollForSocialClass = false};
             }
+            // Generate plan touched type
+            let selectedPT_type = this.weighted_random(this.world.data.planetouched_states);
+            console.log(selectedPT_type);
+            if(selectedPT_type.name == 'plane-touched'){
+                console.log('go')
+                let selectedPTRace = this.weighted_random(selectedPT_type.available_planetouched_types).name;
+                console.log(selectedPTRace)
+                this.generatedCharacter.plain_touched_type = selectedPTRace;
+                console.log(this.generatedCharacter)
+            }
+            
             // Generate Age
-            let selectedAge = this.weighted_random(this.database.ages);
-            this.generatedCharacter.age = selectedAge.name
-            if(!selectedAge.occupation_needed){rollForOccupation = false;}
+            let selectedAge = this.weighted_random(this.world.data.ages);
+            this.generatedCharacter.age = selectedAge.name;
+            if(!selectedAge.occupation_allowed){rollForOccupation = false}; 
+            
             // Generate Family Status
-            this.generatedCharacter.familystatus = selectedAge.relationship_status_allowed ? this.weighted_random(this.database.familyStatuses).name : 'Single';
+            this.generatedCharacter.familystatus = selectedAge.relationship_status_allowed ? this.weighted_random(this.world.data.relationshipstatuses).name : 'Single';
             // Generate Social Class
             this.generatedCharacter.socialclass = null;
-            if(rollForSocialClass){
-                let selectedSocialClass = this.weighted_random(this.database.socialClasses)
-                this.generatedCharacter.socialclass = selectedSocialClass.name;
-                if(!selectedSocialClass.occupation_needed){rollForOccupation = false;}
-            }
-            // Generate Occupation
             this.generatedCharacter.occupation = null;
-            if(rollForOccupation){
-                let that = this;
-                let availableOccupations = this.database.occupations.filter(function (el){
-                    return el.social_class ==  that.generatedCharacter.socialclass;
-                });
-                if(availableOccupations.length > 0){
-                    this.generatedCharacter.occupation = this.weighted_random(availableOccupations).name
+            if(rollForSocialClass){
+                let selectedSocialClass = this.weighted_random(this.world.data.socialclasses)
+                this.generatedCharacter.socialclass = selectedSocialClass.name;
+                if(selectedSocialClass.name == 'Minor Nobility' && selectedAge.name == 'juvenile'){rollForOccupation = false};
+                if(rollForOccupation && selectedSocialClass.available_occupations.length > 0){
+                    // Generate Occupation
+                    this.generatedCharacter.occupation = this.weighted_random(selectedSocialClass.available_occupations).name
                 }
             }
+            
             // Generate Traits
             let selectedTraits = '';
             for(let i=0; i<3; i++){

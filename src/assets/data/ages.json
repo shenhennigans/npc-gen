@@ -2,7 +2,7 @@
     {
         "name": "juvenile",
         "weight": 10,
-        "occupation_needed": false,
+        "occupation_needed": true,
         "relationship_status_allowed": false
     },
     {
