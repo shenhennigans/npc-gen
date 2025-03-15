@@ -1,5 +1,5 @@
 <script setup>
-	import Controls from './components/Controls.vue'
+	import CharacterGeneration from './components/CharacterGeneration.vue'
 	import CharacterOutput from './components/CharacterOutput.vue'
 	import CharacterStory from './components/CharacterStory.vue'
 	import HeaderComp from './components/Header.vue'
@@ -81,7 +81,7 @@
 				<p>Currently running: <a class="text-link">{{ state.world.name }}</a></p>
 			</HeaderComp>
 
-			 <Controls :world="state.world" @generated="displayCharacter"/>
+			 <CharacterGeneration :world="state.world" @generated="displayCharacter"/>
 		</div>
 	</header>
 	

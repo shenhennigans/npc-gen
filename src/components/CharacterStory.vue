@@ -64,7 +64,6 @@ export default {
             this.showBackstory = true;
             // assigning open ai response to backstory variable
             this.char.backstory = completion.choices[0].message.content;
-            console.log(completion.choices[0].message.content);
             
         },
         makePrompt(includeSystemPrompt, isShortVersion){
