@@ -153,7 +153,7 @@ export default {
             if(gender.symbol != 'NB'){
                 request_url += '&gender='+ gender.symbol;
             }
-            if(this.nameFlavour != null){
+            if(this.nameFlavour != null && this.nameFlavour != 'any'){
                 request_url += '&usage='+ this.nameFlavour;
             }
             request_url += '&number=1&randomsurname=yes'
