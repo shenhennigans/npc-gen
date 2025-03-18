@@ -76,11 +76,10 @@
 
 		<div class="wrapper">
 			<HeaderComp>
-				<template #heading>DnD NPC Generator</template>
+				<template #heading>NPC Generator</template>
 				<p>Quickly create NPCs for your stories and campaigns. Play and get inspired.</p>
 				<p>Currently running: <a class="text-link">{{ state.world.name }}</a></p>
 			</HeaderComp>
-
 			 <CharacterGeneration :world="state.world" @generated="displayCharacter"/>
 		</div>
 	</header>
@@ -88,10 +87,8 @@
 	<main>
 		<template v-if="state.showCharacter==true">
 			<CharacterOutput :char="state.character" />
-		</template>
-		<template v-if="state.showCharacter==true">
 			<CharacterStory :char="state.character"  ref="characterStoryRef" @export="exportCharacter"/>
-		</template>	
+		</template>
 	</main>
 
 	<footer class="blockquote-footer">

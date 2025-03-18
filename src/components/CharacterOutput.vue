@@ -1,14 +1,7 @@
 <script setup>
 import PropertyItem from './PropertyItem.vue'
-// import DocumentationIcon from './icons/IconDocumentation.vue'
-// import ToolingIcon from './icons/IconTooling.vue'
-// import EcosystemIcon from './icons/IconEcosystem.vue'
-// import CommunityIcon from './icons/IconCommunity.vue'
-// import SupportIcon from './icons/IconSupport.vue'
-
 const props = defineProps(['char'])
 </script>
-
 
 <template>
     <div class="wrapper">
@@ -37,17 +30,6 @@ const props = defineProps(['char'])
     <PropertyItem>
         <template #icon>
             <v-icon name="gi-mesh-network" fill="#00BD7E" animation="float" speed="slow" scale="2"/>
-            <!-- 
-            GiAbstract098 gi-abstract-098
-            GiConwayLifeGlider gi-conway-life-glider
-            GiMeshNetwork gi-mesh-network
-            GiMolecule
-
-            GiDigDug
-            GiLaurels
-
-            gi-barbed-sun
-             -->
         </template>
         <template #heading>Alignment & Traits </template>
         {{ char.alignment }} <br>
@@ -65,7 +47,6 @@ const props = defineProps(['char'])
     <PropertyItem v-if="char.socialclass != null">
         <template #icon>
             <v-icon name="gi-laurels" fill="#00BD7E" animation="float" speed="slow" scale="2"/>
-            <!-- gi-open-treasure-chest -->
         </template>
         <template #heading>Social Class</template>
         {{ char.socialclass }}

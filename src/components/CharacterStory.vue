@@ -156,7 +156,6 @@ export default {
 <style scoped>
     .card-text{
         margin-top: 1.5rem;
-        /* max-width: 80%; */
         white-space: pre-wrap;
         text-align: left;
     }
