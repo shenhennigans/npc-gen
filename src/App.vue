@@ -16,7 +16,9 @@
 	function displayCharacter(char) {
 				state.character = char;
 				state.showCharacter = true;
-				characterStoryRef.value.hideDetails();
+				if(characterStoryRef.value != null){
+					characterStoryRef.value.hideDetails();
+				}
 	}
 	function exportCharacter(char){
 		state.character = char;
