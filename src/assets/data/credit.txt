@@ -1,0 +1,6 @@
+## Traits JSON
+https://github.com/ScottMaclure/character-traits/tree/master
+## Icons
+https://oh-vue-icons.js.org/
+## Names DB
+https://www.behindthename.com/api/
