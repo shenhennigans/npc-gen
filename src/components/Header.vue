@@ -8,6 +8,6 @@
 </template>
 <style scoped>
     .wrapper{
-        margin-bottom: 2rem;
+        margin-bottom: 0.1rem;
     }
 </style>
