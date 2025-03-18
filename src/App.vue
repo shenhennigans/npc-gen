@@ -2,13 +2,17 @@
 	import CharacterGeneration from './components/CharacterGeneration.vue'
 	import CharacterOutput from './components/CharacterOutput.vue'
 	import CharacterStory from './components/CharacterStory.vue'
+	import NameUsageSelection from './components/NameUsageSelection.vue'
 	import HeaderComp from './components/Header.vue'
 	import world from './assets/data/world.json'
 	import { reactive, ref} from "vue";
 	//reactive components
-	const state = reactive({ world : world, character: {}, showCharacter:false});
+	const state = reactive({ world : world, character: {}, showCharacter:false, nameFlavour: "any"});
 	const characterStoryRef = ref(null);
 	// methods
+	function setNameFlavour(option){
+		state.nameFlavour = option;
+	}
 	function displayCharacter(char) {
 				state.character = char;
 				state.showCharacter = true;
@@ -63,7 +67,6 @@
 		} else {
 			str = '';
 		}
-		//console.log(str);
 		return str;
 	}
 </script>
@@ -80,7 +83,8 @@
 				<p>Quickly create NPCs for your stories and campaigns. Play and get inspired.</p>
 				<p>Currently running: <a class="text-link">{{ state.world.name }}</a></p>
 			</HeaderComp>
-			 <CharacterGeneration :world="state.world" @generated="displayCharacter"/>
+			<NameUsageSelection @optionSelected="setNameFlavour" />
+			<CharacterGeneration :world="state.world" :nameFlavour="state.nameFlavour" @generated="displayCharacter"/>
 		</div>
 	</header>
 	

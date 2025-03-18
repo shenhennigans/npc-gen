@@ -6,7 +6,8 @@ import alignments from '../assets/data/alignments.json'
 import traits from '../assets/data/traits.json'
 export default {
     props: {
-        world: {}
+        world: {},
+        nameFlavour : String
     },
     data() {
         return {
@@ -116,7 +117,10 @@ export default {
             let request_url = this.makeNamesDBRequest(selectedGender)
             axios.get(request_url)
             .then(response => {
-                this.generatedCharacter.name = response.data.names[0] + ' '+ response.data.names[1];
+                this.generatedCharacter.name = response.data.names[0];
+                if(response.data.names[1] != undefined){
+                    this.generatedCharacter.name += ' '+ response.data.names[1];
+                }
             })
             .catch(error =>{
                 console.log(error);
@@ -149,6 +153,9 @@ export default {
             if(gender.symbol != 'NB'){
                 request_url += '&gender='+ gender.symbol;
             }
+            if(this.nameFlavour != null){
+                request_url += '&usage='+ this.nameFlavour;
+            }
             request_url += '&number=1&randomsurname=yes'
             return request_url;
         }
@@ -164,7 +171,7 @@ export default {
 <style scoped>
 
     .wrapper{
-        margin-bottom: 1rem;
+        margin-bottom: 0.5rem;
     }
 
     button {
